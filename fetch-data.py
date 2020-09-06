@@ -4,6 +4,9 @@
 import requests
 import sys
 
+path = "/home/jellert/Documents/proj/williams-covid-check/"
+fname = "williams-covid-data.txt"
+
 # pulls out the text from between
 # a <div> and a </div>.
 # This assumes the tag and the end tag are on the same line,
@@ -34,6 +37,6 @@ data = list(map(strip_div, dataHTML))
 data[2] = ''.join(c for c in data[2] if c.isnumeric())
 data[3] = ''.join(c for c in data[3] if c.isnumeric())
 
-file = open('williams-covid-data.txt', 'w')
+file = open(path+fname, 'w')
 file.write(data[0]+','+data[1]+','+data[2]+','+data[3])
 file.close()
