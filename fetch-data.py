@@ -29,19 +29,11 @@ dataHTML = ["" for i in range(4)]
 for i in range(4):
     dataHTML[i] = lines[514+4*i]
 data = list(map(strip_div, dataHTML))
-
-last_24_hrs = int(data[0])
-week_cases = int(data[1])
-# thanks to John Coleman for the elegant way to get a comma out
+# thanks to John Coleman for the elegant way to remove commas
 # https://stackoverflow.com/questions/37662555/valueerror-invalid-literal-for-int-with-base-10
-week_tests = data[2]
-week_tests = ''.join(c for c in week_tests if c.isnumeric())
-week_tests = int(week_tests)
-week_rate = week_cases/week_tests
-# convert week rate into percentage w/ hundredths of a percent
-week_rate *= 100
-week_rate = round(week_rate, 2)
+data[2] = ''.join(c for c in data[2] if c.isnumeric())
+data[3] = ''.join(c for c in data[3] if c.isnumeric())
 
 file = open('williams-covid-data.txt', 'w')
-file.write(str(last_24_hrs)+','+str(week_rate))
+file.write(data[0]+','+data[1]+','+data[2]+','+data[3])
 file.close()
