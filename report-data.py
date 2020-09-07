@@ -20,4 +20,4 @@ week_rate *= 100
 week_rate = round(week_rate, 2)
 
 print("There were " + str(last_24_hrs) + " new cases yesterday.")
-print(str(week_rate) + "% of tests came back positive last week.")
+print(str(week_rate) + "% of tests came back positive this week.")
