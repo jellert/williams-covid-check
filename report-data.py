@@ -13,7 +13,7 @@ data = line.split(',')
 
 last_24_hrs = int(data[0])
 week_cases = int(data[1])
-week_tests = int(data[2])
+week_tests = int(data[3])
 week_rate = week_cases/week_tests
 # convert week rate into percentage w/ hundredths of a percent
 week_rate *= 100

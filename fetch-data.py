@@ -28,15 +28,15 @@ lines = text.split('\n')
 # probably a bad idea but I don't expect them to
 # change the website very much.
 # otherwise, we can search for <div class="stat"> to find them.
-dataHTML = ["" for i in range(4)]
+dataHTML = ["" for i in range(5)]
 for i in range(4):
     dataHTML[i] = lines[514+4*i]
 data = list(map(strip_div, dataHTML))
 # thanks to John Coleman for the elegant way to remove commas
 # https://stackoverflow.com/questions/37662555/valueerror-invalid-literal-for-int-with-base-10
-data[2] = ''.join(c for c in data[2] if c.isnumeric())
 data[3] = ''.join(c for c in data[3] if c.isnumeric())
+data[4] = ''.join(c for c in data[4] if c.isnumeric())
 
 file = open(path+fname, 'w')
-file.write(data[0]+','+data[1]+','+data[2]+','+data[3])
+file.write(data[0]+','+data[1]+','+data[2]+','+data[3]+','+data[4])
 file.close()
