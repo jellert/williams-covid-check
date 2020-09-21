@@ -22,15 +22,25 @@ def strip_div(str):
 url = 'https://www.williams.edu/coronavirus/dashboard/'
 page = requests.get(url)
 text = page.text
+# print(text)
 lines = text.split('\n')
-# pulling the relevant numbers from the HTML
-# by referencing hard-coded line numbers.
-# probably a bad idea but I don't expect them to
-# change the website very much.
-# otherwise, we can search for <div class="stat"> to find them.
+
+# look for the correct place to start
+dataStart = 0
+for i in range(len(lines)):
+    # the stat tags are only used around the stats (go figure)
+    if "<div class=\"stat\">" in lines[i]:
+        dataStart = i
+        break
+if dataStart == 0:
+    # somehow it didn't work?
+    print("Oops")
+    exit()
+
+
 dataHTML = ["" for i in range(5)]
 for i in range(4):
-    dataHTML[i] = lines[514+4*i]
+    dataHTML[i] = lines[dataStart+4*i]
 data = list(map(strip_div, dataHTML))
 # thanks to John Coleman for the elegant way to remove commas
 # https://stackoverflow.com/questions/37662555/valueerror-invalid-literal-for-int-with-base-10
